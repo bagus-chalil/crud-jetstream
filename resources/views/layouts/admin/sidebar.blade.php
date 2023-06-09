@@ -6,7 +6,7 @@
         <span class="hide-menu">Home</span>
       </li>
       <li class="sidebar-item">
-        <a class="sidebar-link" href="./index.html" aria-expanded="false">
+        <a class="sidebar-link" href="{{url('admin/dashboard')}}" aria-expanded="false">
           <span>
             <i class="ti ti-layout-dashboard"></i>
           </span>
@@ -18,7 +18,7 @@
         <span class="hide-menu">Master Data</span>
       </li>
       <li class="sidebar-item">
-        <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
+        <a class="sidebar-link" href="{{url('category/')}}" aria-expanded="false">
           <span>
             <i class="ti ti-article"></i>
           </span>
@@ -26,7 +26,7 @@
         </a>
       </li>
       <li class="sidebar-item">
-        <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
+        <a class="sidebar-link" href="{{url('sub_category/')}}" aria-expanded="false">
           <span>
             <i class="ti ti-alert-circle"></i>
           </span>

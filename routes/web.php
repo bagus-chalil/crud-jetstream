@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,5 +37,13 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified','r
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified','role:admin'])->group(function () {
     // admin routes
     Route::get('/admin/dashboard',[AdminDashboardController::class,'dashboard'])->name('admin.dashboard');
+    //Surat Masuk
+    Route::prefix('category')->group(function () {
+        Route::get('/', [CategoryController::class, 'index']);
+        Route::post('/insert', [CategoryController::class, 'store']);
+        Route::get('/{category}', [CategoryController::class, 'edit']);
+        Route::put('/{category}', [CategoryController::class, 'update']);
+        Route::delete('/{category}', [CategoryController::class, 'destroy']);
+    });
 
 });
