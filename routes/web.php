@@ -28,16 +28,29 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
 
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified','role:user'])->group(function () {
-    Route::get('/home', function () {
-        return 'User ';
-    })->name('user.dashboard');
+    Route::middleware(['splade'])->group(function () {
+        Route::get('/', fn () => view('home'))->name('home');
+        Route::get('/docs', fn () => view('docs'))->name('docs');
+    
+        // Registers routes to support the interactive components...
+        Route::spladeWithVueBridge();
+    
+        // Registers routes to support password confirmation in Form and Link components...
+        Route::spladePasswordConfirmation();
+    
+        // Registers routes to support Table Bulk Actions and Exports...
+        Route::spladeTable();
+    
+        // Registers routes to support async File Uploads with Filepond...
+        Route::spladeUploads();
+    });
 });
 
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified','role:admin'])->group(function () {
     // admin routes
     Route::get('/admin/dashboard',[AdminDashboardController::class,'dashboard'])->name('admin.dashboard');
-    //Surat Masuk
+    //Category
     Route::prefix('category')->group(function () {
         Route::get('/', [CategoryController::class, 'index']);
         Route::post('/insert', [CategoryController::class, 'store']);

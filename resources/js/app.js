@@ -1,9 +1,18 @@
-import './bootstrap';
+import "./bootstrap";
+import "../css/app.css";
+import "@protonemedia/laravel-splade/dist/style.css";
 
-import Alpine from 'alpinejs';
-import focus from '@alpinejs/focus';
-window.Alpine = Alpine;
+import { createApp } from "vue/dist/vue.esm-bundler.js";
+import { renderSpladeApp, SpladePlugin } from "@protonemedia/laravel-splade";
 
-Alpine.plugin(focus);
+const el = document.getElementById("app");
 
-Alpine.start();
+createApp({
+    render: renderSpladeApp({ el })
+})
+    .use(SpladePlugin, {
+        "max_keep_alive": 10,
+        "transform_anchors": false,
+        "progress_bar": true
+    })
+    .mount(el);
