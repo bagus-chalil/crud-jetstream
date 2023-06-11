@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,9 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified','r
     Route::middleware(['splade'])->group(function () {
         Route::get('/', fn () => view('home'))->name('home');
         Route::get('/docs', fn () => view('docs'))->name('docs');
+
+        // Posts routes
+        Route::resource('/posts', PostController::class);
     
         // Registers routes to support the interactive components...
         Route::spladeWithVueBridge();

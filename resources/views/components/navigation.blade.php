@@ -20,6 +20,10 @@
                         <x-nav-link href="{{ route('docs') }}" :active="request()->routeIs('docs')">
                             {{ __('Documentation') }}
                         </x-nav-link>
+
+                        <x-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts*')">
+                            {{ __('Posts') }}
+                        </x-nav-link>
                     </div>
                 </div>
 
@@ -45,6 +49,7 @@
                 <x-responsive-nav-link href="{{ route('docs') }}" :active="request()->routeIs('docs')">
                     {{ __('Documentation') }}
                 </x-responsive-nav-link>
+                
             </div>
         </div>
     </nav>
