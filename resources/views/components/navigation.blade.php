@@ -25,6 +25,7 @@
                             {{ __('Posts') }}
                         </x-nav-link>
                     </div>
+                    
                 </div>
 
                 <!-- Hamburger -->

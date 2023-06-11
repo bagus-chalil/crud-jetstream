@@ -17,7 +17,7 @@ class PostController extends Controller
         $posts = Post::latest()->paginate(7);
 
         // render view
-        return view('posts.index', [
+        return view('users.posts.index', [
             'posts' => SpladeTable::for($posts)
             ->column('name')
             ->column('keterangan')
@@ -31,7 +31,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        // render view
+        return view('users.posts.create');
     }
 
     /**
@@ -39,7 +40,27 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
+        // validate request
+        $this->validate($request, [
+            'photo'     => 'required|image|mimes:jpeg,jpg,png',
+            'name'     => 'required|min:5',
+            'keterangan'   => 'required|min:10'
+        ]);
+
+        // upload image
+        $image = $request->file('image');
+        $image->storeAs('public/posts', $image->hashName());
+
+        // insert new post to db
+        Post::create([
+            'name' => $request->name,
+            'keterangan' => $request->keterangan,
+            'photo' => $image->hashName(),
+        ]);
+
+        // render view
+        return redirect(route('posts.index'));
     }
 
     /**

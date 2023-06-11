@@ -13,7 +13,7 @@ class HomeController extends Controller
         }
 
         if(auth()->user()->hasRole('user')){
-            return redirect()->route('user.dashboard');
+            return redirect(url('/'));
         }
 
     }
